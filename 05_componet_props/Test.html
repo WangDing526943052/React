@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Component的Props属性使用</title>
+</head>
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      /*
+      要求：姓名不能为空，String
+            年龄如果没有，默认18，number
+            性别如果没有，默认女
+       */
+      //1.虚拟组件DOM
+      // 工厂方法
+      function Person(props) {
+        return  (
+          <ul>
+            <li>{props.name}</li>
+            <li>{props.age}</li>
+            <li>{props.sex}</li>
+          </ul>
+        )
+      }
+      //限定默认值
+      Person.defaultProps = {
+          sex:"男",
+          age: 18
+      }
+      //指定属性值的类型和必要性
+      Person.PropTypes = {
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number
+      }
+      //2.渲染组件标签
+      const p1 = {
+        name:'张三',
+        age:22,
+        sex:'男'
+      }
+    //  ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex}/>,document.getElementById('test'))
+      ReactDOM.render(<Person {...p1}/>,document.getElementById('test1'))
+      const p2 = {
+        name:'李四',
+        age:19,
+        sex:'女'
+      }
+      ReactDOM.render(<Person name={p2.name}/>,document.getElementById('test2'))
+    </script>
+</body>
+</html>

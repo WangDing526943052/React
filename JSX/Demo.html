@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>前端JSX技术</title>
+</head>
+<body>
+<div id="test"></div>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  const names = ["Jquery","Zepto","Angular","React","Vue"];
+  //将数组对象转化为数组标签
+  // 用数组的map()
+    //1.创建一个虚拟的DOM
+    /*
+    const ul = <ul>{names}</ul>
+    */
+    const ul =(
+      <ul>
+        {   //将数组对象转化为数组标签 map() 箭头函数
+          names.map((name,index) => <li key={index}> {name}</li>)
+        }
+      </ul>
+    );
+   //2.渲染虚拟DOM
+  ReactDOM.render(ul,document.getElementById('test'))
+</script>
+</body>
+</html>
